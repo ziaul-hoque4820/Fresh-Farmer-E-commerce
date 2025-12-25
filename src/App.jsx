@@ -4,6 +4,7 @@ import Banner from './pages/home/Banner'
 import Category from './pages/home/Category'
 import ChooseUs from './pages/home/ChooseUs'
 import Newsletter from './pages/home/Newsletter'
+import Footer from './pages/share/Footer'
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
             <Category />
             <ChooseUs />
             <Newsletter />
+            <Footer />
         </>
     )
 }
