@@ -19,7 +19,7 @@ function ProductCart() {
                 </div>
                 <div className="absolute top-3 right-3">
                     <button
-                        className="bg-white dark:bg-gray-800 p-2 rounded-full shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+                        className="bg-white dark:bg-gray-800 p-2 rounded-full shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition cursor-pointer"
                     >
                         <i
                             className="far fa-heart text-gray-600 dark:text-gray-400"
@@ -61,7 +61,7 @@ function ProductCart() {
                     <span className="text-sm text-gray-500 dark:text-gray-400">Stock: 50kg</span>
                 </div>
                 <button
-                    className="w-full bg-primary-600 hover:bg-primary-700 text-white py-2 rounded-lg font-medium transition">
+                    className="w-full bg-primary-600 hover:bg-primary-700 text-white py-2 rounded-lg font-medium transition cursor-pointer">
                     Add to Cart
                 </button>
             </div>
