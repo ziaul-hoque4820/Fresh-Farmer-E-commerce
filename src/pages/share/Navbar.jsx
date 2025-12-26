@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaBars, FaTimes, FaShoppingCart, FaChevronDown, FaMoon, FaSun, FaSearch, FaUser, FaSignOutAlt, } from "react-icons/fa";
 import Logo from "../../component/Logo";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -9,7 +10,6 @@ function Navbar() {
     );
     const [userDropdownOpen, setUserDropdownOpen] = useState(false);
     const [activeNavItem, setActiveNavItem] = useState("Home");
-    const [searchQuery, setSearchQuery] = useState("");
 
     const userDropdownRef = useRef(null);
     const mobileMenuRef = useRef(null);
@@ -43,10 +43,10 @@ function Navbar() {
     };
 
     const navItems = [
-        { id: "home", label: "Home" },
-        { id: "products", label: "Products" },
-        { id: "farmers", label: "Farmers" },
-        { id: "about", label: "About" },
+        { id: "/", label: "Home" },
+        { id: "/products", label: "Products" },
+        { id: "/farmers", label: "Farmers" },
+        { id: "/about", label: "About" },
     ];
 
     return (
@@ -59,9 +59,9 @@ function Navbar() {
                     {/* Desktop Navigation */}
                     <div className="hidden lg:flex items-center space-x-8">
                         {navItems.map((item) => (
-                            <a
+                            <NavLink
                                 key={item.id}
-                                href={`#${item.id}`}
+                                to={`/${item.id}`}
                                 onClick={() => setActiveNavItem(item.label)}
                                 className={`relative px-1 py-2 ${activeNavItem === item.label
                                     ? "text-primary-600 dark:text-primary-400 font-semibold"
@@ -72,33 +72,14 @@ function Navbar() {
                                 {activeNavItem === item.label && (
                                     <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary-500" />
                                 )}
-                            </a>
+                            </NavLink>
                         ))}
                     </div>
 
                     {/* Actions */}
                     <div className="flex items-center space-x-4">
-                        {/* Search */}
-                        <div className="hidden sm:block relative">
-                            <input
-                                type="text"
-                                placeholder="Search products..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                className="
-                  w-40 sm:w-48 lg:w-56
-                  pl-10 pr-4 py-2
-                  border border-gray-300 dark:border-gray-600
-                  rounded-lg
-                  focus:ring-2 focus:ring-primary-500
-                  dark:bg-gray-700 dark:text-white
-                "
-                            />
-                            <FaSearch className="absolute left-3 top-3 text-gray-400" />
-                        </div>
-
                         {/* Cart */}
-                        <button className="relative p-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
+                        <button className="relative p-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 cursor-pointer">
                             <FaShoppingCart className="text-xl" />
                             <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                                 3
@@ -120,7 +101,7 @@ function Navbar() {
                                     alt="user"
                                 />
                                 <span>John Doe</span>
-                                <FaChevronDown className="text-sm" />
+                                <FaChevronDown className="text-sm  cursor-pointer" />
                             </button>
 
                             {userDropdownOpen && (
@@ -134,12 +115,12 @@ function Navbar() {
                                         </p>
                                     </div>
 
-                                    <button className="w-full px-4 py-2 text-left text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center space-x-2">
+                                    <button className="w-full px-4 py-2 text-left text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center space-x-2  cursor-pointer">
                                         <FaUser className="text-sm" />
                                         <span>Profile</span>
                                     </button>
 
-                                    <button className="w-full px-4 py-2 text-left text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center space-x-2">
+                                    <button className="w-full px-4 py-2 text-left text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center space-x-2  cursor-pointer">
                                         <FaSignOutAlt className="text-sm" />
                                         <span>Logout</span>
                                     </button>
@@ -150,7 +131,7 @@ function Navbar() {
                         {/* Dark Mode */}
                         <button
                             onClick={toggleDark}
-                            className="p-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400"
+                            className="p-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400  cursor-pointer"
                         >
                             {dark ? <FaSun /> : <FaMoon />}
                         </button>
@@ -158,7 +139,7 @@ function Navbar() {
                         {/* Mobile Menu Button */}
                         <button
                             onClick={() => setMenuOpen(!menuOpen)}
-                            className="lg:hidden p-2 text-gray-700 dark:text-gray-300"
+                            className="lg:hidden p-2 text-gray-700 dark:text-gray-300 cursor-pointer"
                             aria-label="Toggle menu"
                         >
                             {menuOpen ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}
@@ -174,9 +155,9 @@ function Navbar() {
                 >
                     <div className="flex flex-col space-y-4 py-4 border-t border-gray-200 dark:border-gray-700">
                         {navItems.map((item) => (
-                            <a
+                            <NavLink
                                 key={item.id}
-                                href={`#${item.id}`}
+                                to={`/${item.id}`}
                                 onClick={() => {
                                     setActiveNavItem(item.label);
                                     setMenuOpen(false);
@@ -187,7 +168,7 @@ function Navbar() {
                                     }`}
                             >
                                 {item.label}
-                            </a>
+                            </NavLink>
                         ))}
                     </div>
                 </div>

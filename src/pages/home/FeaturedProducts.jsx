@@ -1,5 +1,6 @@
 import React from 'react'
 import ProductCart from '../../component/ProductCart'
+import { NavLink } from 'react-router-dom'
 
 function FeaturedProducts() {
     return (
@@ -16,12 +17,12 @@ function FeaturedProducts() {
                             Fresh picks from our local farmers
                         </p>
                     </div>
-                    <a
-                        href="products.html"
+                    <NavLink
+                        to={'/products'}
                         className="text-primary-600 dark:text-primary-400 font-medium hover:text-primary-700 dark:hover:text-primary-300"
                     >
                         View All <i className="fas fa-arrow-right ml-1"></i>
-                    </a>
+                    </NavLink>
                 </div>
 
                 <div

@@ -1,4 +1,6 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
+import Logo from '../../component/Logo'
 
 function Footer() {
     return (
@@ -7,32 +9,22 @@ function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div>
                         <div className="flex items-center space-x-3 mb-4">
-                            <div className="bg-primary-500 p-2 rounded-lg">
-                                <i
-                                    className="fas fa-seedling text-white text-xl"
-                                ></i>
-                            </div>
-                            <div>
-                                <h3 className="text-xl font-bold">FarmFresh</h3>
-                                <p className="text-sm text-gray-400">
-                                    Local Farmer Booking
-                                </p>
-                            </div>
+                            <Logo />
                         </div>
                         <p className="text-gray-400 mb-4">
                             Connecting communities with fresh, local produce
                             directly from farmers.
                         </p>
                         <div className="flex space-x-4">
-                            <a href="#" className="text-gray-400 hover:text-white"
+                            <NavLink to="#" className="text-gray-400 hover:text-blue-400 text-2xl"
                             ><i className="fab fa-facebook"></i
-                            ></a>
-                            <a href="#" className="text-gray-400 hover:text-white"
+                            ></NavLink>
+                            <NavLink to="#" className="text-gray-400 hover:text-sky-400 text-2xl"
                             ><i className="fab fa-twitter"></i
-                            ></a>
-                            <a href="#" className="text-gray-400 hover:text-white"
+                            ></NavLink>
+                            <NavLink to="#" className="text-gray-400 hover:text-rose-400 text-2xl"
                             ><i className="fab fa-instagram"></i
-                            ></a>
+                            ></NavLink>
                         </div>
                     </div>
 
@@ -40,22 +32,24 @@ function Footer() {
                         <h4 className="font-semibold mb-4">Quick Links</h4>
                         <ul className="space-y-2 text-gray-400">
                             <li>
-                                <a href="#" className="hover:text-white">Home</a>
+                                <NavLink to="/" className="hover:text-white">
+                                    Home
+                                </NavLink>
                             </li>
                             <li>
-                                <a href="products.html" className="hover:text-white"
-                                >Products</a
-                                >
+                                <NavLink to="/products" className="hover:text-white"
+                                >Products
+                                </NavLink>
                             </li>
                             <li>
-                                <a href="farmers.html" className="hover:text-white"
-                                >Farmers</a
-                                >
+                                <NavLink to="/farmers" className="hover:text-white"
+                                >Farmers
+                                </NavLink>
                             </li>
                             <li>
-                                <a href="about.html" className="hover:text-white"
-                                >About Us</a
-                                >
+                                <NavLink to="/about" className="hover:text-white"
+                                >About Us
+                                </NavLink>
                             </li>
                         </ul>
                     </div>
@@ -64,26 +58,26 @@ function Footer() {
                         <h4 className="font-semibold mb-4">For Farmers</h4>
                         <ul className="space-y-2 text-gray-400">
                             <li>
-                                <a href="register.html" className="hover:text-white"
-                                >Join as Farmer</a
-                                >
+                                <NavLink to="/register" className="hover:text-white"
+                                >Join as Farmer
+                                </NavLink>
                             </li>
                             <li>
-                                <a href="create.html" className="hover:text-white"
-                                >Add Products</a
-                                >
+                                <NavLink to="/create" className="hover:text-white"
+                                >Add Products
+                                </NavLink>
                             </li>
                             <li>
-                                <a
-                                    href="manageList.html"
+                                <NavLink
+                                    to="/manage-list"
                                     className="hover:text-white"
-                                >Manage Listings</a
-                                >
+                                >Manage Listings
+                                </NavLink>
                             </li>
                             <li>
-                                <a href="#" className="hover:text-white"
-                                >Farmer Support</a
-                                >
+                                <NavLink to="/help-center" className="hover:text-white"
+                                >Farmer Support
+                                </NavLink>
                             </li>
                         </ul>
                     </div>
@@ -92,24 +86,24 @@ function Footer() {
                         <h4 className="font-semibold mb-4">Support</h4>
                         <ul className="space-y-2 text-gray-400">
                             <li>
-                                <a href="#" className="hover:text-white"
-                                >Help Center</a
-                                >
+                                <NavLink to="/help-center" className="hover:text-white"
+                                >Help Center
+                                </NavLink>
                             </li>
                             <li>
-                                <a href="#" className="hover:text-white"
-                                >Contact Us</a
-                                >
+                                <NavLink to="/contact" className="hover:text-white"
+                                >Contact Us
+                                </NavLink>
                             </li>
                             <li>
-                                <a href="#" className="hover:text-white"
-                                >Terms of Service</a
-                                >
+                                <NavLink to="/terms-service" className="hover:text-white"
+                                >Terms of Service
+                                </NavLink>
                             </li>
                             <li>
-                                <a href="#" className="hover:text-white"
-                                >Privacy Policy</a
-                                >
+                                <NavLink to="/policy" className="hover:text-white"
+                                >Privacy Policy
+                                </NavLink>
                             </li>
                         </ul>
                     </div>

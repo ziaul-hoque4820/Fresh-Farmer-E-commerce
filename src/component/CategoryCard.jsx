@@ -1,8 +1,9 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function CategoryCard({ title, items, icon, bg, hoverBg, iconColor, onClick }) {
     return (
-        <div className="group cursor-pointer" onClick={onClick}>
+        <NavLink className="group cursor-pointer" onClick={onClick}>
             <div
                 className={`
                     rounded-2xl p-6 text-center transition
@@ -19,7 +20,7 @@ function CategoryCard({ title, items, icon, bg, hoverBg, iconColor, onClick }) {
                     {items}
                 </p>
             </div>
-        </div>
+        </NavLink>
     );
 }
 

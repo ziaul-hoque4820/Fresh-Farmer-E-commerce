@@ -20,27 +20,32 @@ function Banner() {
                     </p>
 
                     {/* Search Bar */}
-                    <div className="max-w-2xl mx-auto mb-8">
-                        <div className="flex rounded-lg overflow-hidden shadow-lg">
-                            <input
-                                type="text"
-                                placeholder="Search for vegetables, fruits, farmers..."
-                                className="flex-1 px-6 py-4 text-gray-900 text-lg focus:outline-none bg-white dark:bg-gray-300"
-                            />
-                            <select
-                                className="px-4 py-4 text-gray-900 border-l border-gray-900 focus:outline-none bg-white dark:bg-gray-300"
-                            >
-                                <option>All Categories</option>
-                                <option>Vegetables</option>
-                                <option>Fruits</option>
-                                <option>Grains</option>
-                                <option>Dairy</option>
-                            </select>
-                            <button
-                                className="bg-primary-700 hover:bg-primary-800 px-8 py-4 transition"
-                            >
-                                <i className="fas fa-search text-xl"></i>
-                            </button>
+                    <div className="max-w-2xl mx-auto mb-8 px-2">
+                        <div className="bg-white dark:bg-gray-200 rounded-lg shadow-lg p-1">
+
+                            {/* Top Row */}
+                            <div className="flex items-center gap-2">
+                                <input
+                                    type="text"
+                                    placeholder="Search for vegetables, fruits, farmers..."
+                                    className=" flex-1 px-4 py-3 text-gray-900 focus:outline-none bg-transparent"
+                                />
+
+                                <button className="bg-primary-700 hover:bg-primary-800 px-5 py-3 rounded-md transition flex items-center justify-center cursor-pointer">
+                                    <i className="fas fa-search text-white"></i>
+                                </button>
+                            </div>
+
+                            {/* Category Select */}
+                            <div className="mt-2">
+                                <select className=" w-full px-4 py-3 text-gray-900 focus:outline-none bg-white dark:bg-gray-200 border-t border-gray-500 overflow-auto">
+                                    <option>All Categories</option>
+                                    <option>Vegetables</option>
+                                    <option>Fruits</option>
+                                    <option>Grains</option>
+                                    <option>Dairy</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
