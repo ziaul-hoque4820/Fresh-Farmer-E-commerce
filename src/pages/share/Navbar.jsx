@@ -61,7 +61,7 @@ function Navbar() {
                         {navItems.map((item) => (
                             <NavLink
                                 key={item.id}
-                                to={`/${item.id}`}
+                                to={`${item.id}`}
                                 onClick={() => setActiveNavItem(item.label)}
                                 className={`relative px-1 py-2 ${activeNavItem === item.label
                                     ? "text-primary-600 dark:text-primary-400 font-semibold"
@@ -157,7 +157,7 @@ function Navbar() {
                         {navItems.map((item) => (
                             <NavLink
                                 key={item.id}
-                                to={`/${item.id}`}
+                                to={`${item.id}`}
                                 onClick={() => {
                                     setActiveNavItem(item.label);
                                     setMenuOpen(false);
