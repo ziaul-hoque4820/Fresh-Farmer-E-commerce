@@ -1,4 +1,5 @@
 import React from 'react'
+import Counter from '../../component/Counter'
 
 function OurImpact() {
     return (
@@ -13,19 +14,27 @@ function OurImpact() {
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                     <div className="text-center">
-                        <div className="text-4xl font-bold mb-2">500+</div>
+                        <div className="text-4xl font-bold mb-2">
+                            <Counter end={500} suffix="+" />
+                        </div>
                         <div className="text-primary-200">Active Farmers</div>
                     </div>
                     <div className="text-center">
-                        <div className="text-4xl font-bold mb-2">10,000+</div>
+                        <div className="text-4xl font-bold mb-2">
+                            <Counter end={10000} suffix="+" />
+                        </div>
                         <div className="text-primary-200">Happy Customers</div>
                     </div>
                     <div className="text-center">
-                        <div className="text-4xl font-bold mb-2">50+</div>
+                        <div className="text-4xl font-bold mb-2">
+                            <Counter end={50} suffix="+" />
+                        </div>
                         <div className="text-primary-200">Districts Covered</div>
                     </div>
                     <div className="text-center">
-                        <div className="text-4xl font-bold mb-2">2,000+</div>
+                        <div className="text-4xl font-bold mb-2">
+                            <Counter end={2000} suffix="+" />
+                        </div>
                         <div className="text-primary-200">Products Available</div>
                     </div>
                 </div>

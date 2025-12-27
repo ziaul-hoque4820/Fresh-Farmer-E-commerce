@@ -3,6 +3,7 @@ import HeroSection from '../../component/HeroSection'
 import MissionVision from './MissionVision'
 import OurValues from './OurValues'
 import OurImpact from './OurImpact'
+import OurTeam from './OurTeam'
 
 function About() {
     return (
@@ -14,6 +15,7 @@ function About() {
             <MissionVision />
             <OurValues />
             <OurImpact />
+            <OurTeam />
         </div>
     )
 }
