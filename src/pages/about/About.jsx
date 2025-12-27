@@ -1,6 +1,8 @@
 import React from 'react'
 import HeroSection from '../../component/HeroSection'
 import MissionVision from './MissionVision'
+import OurValues from './OurValues'
+import OurImpact from './OurImpact'
 
 function About() {
     return (
@@ -10,6 +12,8 @@ function About() {
                 description={"We're on a mission to connect communities with fresh, local produce while supporting sustainable farming practices across Bangladesh."}
             />
             <MissionVision />
+            <OurValues />
+            <OurImpact />
         </div>
     )
 }
