@@ -7,7 +7,7 @@ import OurTeam from './OurTeam'
 
 function About() {
     return (
-        <div className='dark:bg-gray-900'>
+        <div className='dark:bg-gray-900 text-gray-900 dark:text-gray-100'>
             <HeroSection
                 title={"About FarmFresh"}
                 description={"We're on a mission to connect communities with fresh, local produce while supporting sustainable farming practices across Bangladesh."}
