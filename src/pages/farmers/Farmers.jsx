@@ -1,6 +1,7 @@
 import React from 'react'
 import HeroSection from '../../component/HeroSection'
 import FarmerCTA from './FarmerCTA'
+import AllFarmers from './AllFarmers'
 
 function Farmers() {
     return (
@@ -9,6 +10,7 @@ function Farmers() {
                 title={"Meet Our Farmers"}
                 description={"Discover the passionate farmers who grow fresh, organic produce with care and dedication"}
             />
+            <AllFarmers />
             <FarmerCTA />
         </div>
     )
