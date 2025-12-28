@@ -1,4 +1,6 @@
 import React from 'react'
+import { productsData } from '../../data/products'
+import ProductCart from '../../component/ProductCart'
 
 function FiltersAndProducts() {
     return (
@@ -161,6 +163,180 @@ function FiltersAndProducts() {
                     </div>
                 </div>
 
+                {/* Products Grid  */}
+                <div className="lg:col-span-3">
+                    {/* Sort and View Options */}
+                    <div className="flex justify-between items-center mb-6">
+                        <p className="text-gray-600 dark:text-gray-400">
+                            Showing 1-12 of 48 products
+                        </p>
+                        <div className="flex items-center space-x-4">
+                            <select
+                                className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                            >
+                                <option>Sort by: Featured</option>
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                                <option>Newest First</option>
+                                <option>Rating</option>
+                            </select>
+                            <div
+                                className="flex border border-gray-300 dark:border-gray-600 rounded-lg"
+                            >
+                                <button
+                                    className="p-2 bg-primary-600 text-white rounded-l-lg"
+                                >
+                                    <i className="fas fa-th"></i>
+                                </button>
+                                <button
+                                    className="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-r-lg"
+                                >
+                                    <i className="fas fa-list"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Products Grid  */}
+                    <div
+                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                    >
+                        {/* Product Card 1 */}
+                        <div
+                            className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300"
+                        >
+                            <div className="relative">
+                                <img
+                                    src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&h=300&fit=crop"
+                                    alt="Fresh Tomatoes"
+                                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                                />
+                                <div className="absolute top-3 left-3">
+                                    <span
+                                        className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium"
+                                    >Organic</span
+                                    >
+                                </div>
+                                <div className="absolute top-3 right-3">
+                                    <button
+                                        className="bg-white dark:bg-gray-800 p-2 rounded-full shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+                                    >
+                                        <i
+                                            className="far fa-heart text-gray-600 dark:text-gray-400"
+                                        ></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div className="p-6">
+                                <div
+                                    className="flex items-center justify-between mb-2"
+                                >
+                                    <h3
+                                        className="font-semibold text-gray-900 dark:text-white"
+                                    >
+                                        Fresh Tomatoes
+                                    </h3>
+                                    <div
+                                        className="flex items-center text-yellow-400"
+                                    >
+                                        <i className="fas fa-star text-sm"></i>
+                                        <span
+                                            className="text-sm text-gray-600 dark:text-gray-400 ml-1"
+                                        >4.8</span
+                                        >
+                                    </div>
+                                </div>
+                                <p
+                                    className="text-sm text-gray-600 dark:text-gray-400 mb-3"
+                                >
+                                    By Rahim's Farm • Sylhet
+                                </p>
+                                <div
+                                    className="flex items-center justify-between mb-4"
+                                >
+                                    <div>
+                                        <span
+                                            className="text-2xl font-bold text-primary-600 dark:text-primary-400"
+                                        >৳45</span
+                                        >
+                                        <span
+                                            className="text-sm text-gray-500 dark:text-gray-400"
+                                        >/kg</span
+                                        >
+                                    </div>
+                                    <span
+                                        className="text-sm text-gray-500 dark:text-gray-400"
+                                    >Stock: 50kg</span
+                                    >
+                                </div>
+                                <button
+                                    className="w-full bg-primary-600 hover:bg-primary-700 text-white py-2 rounded-lg font-medium transition"
+                                >
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                        {
+                            productsData.map(product => (
+                                <ProductCart key={product.id} />
+                            ))
+                        }
+                    </div>
+
+                    {/* Pagination  */}
+                    <div className="flex justify-center mt-12">
+                        <nav aria-label="Pagination">
+                            <ul
+                                className="inline-flex items-center -space-x-px text-gray-600 dark:text-gray-300"
+                            >
+                                <li>
+                                    <a
+                                        href="#"
+                                        className="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                                    >
+                                        <i className="fas fa-chevron-left"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                                    >1</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        className="px-3 py-2 leading-tight text-white bg-primary-600 border border-primary-600 hover:bg-primary-700 hover:text-white"
+                                    >2</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                                    >3</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                                    >4</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        className="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                                    >
+                                        <i className="fas fa-chevron-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
     )
