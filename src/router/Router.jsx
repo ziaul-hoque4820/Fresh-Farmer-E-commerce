@@ -4,6 +4,7 @@ import RootLayout from '../layout/RootLayout'
 import Home from '../pages/home/Home'
 import About from '../pages/about/About'
 import Farmers from '../pages/farmers/Farmers'
+import ProductsPage from '../pages/products/ProductsPage'
 
 const router = createBrowserRouter([
     {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <Home />
+            },
+            {
+                path: 'products',
+                element: <ProductsPage />
             },
             {
                 path: 'farmers',
