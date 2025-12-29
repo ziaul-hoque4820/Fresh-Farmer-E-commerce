@@ -1,8 +1,7 @@
 import React from 'react'
 
 function ProductCart({ product }) {
-    // console.log(product);
-    
+    if (!product) return null;
     return (
         <div
             className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300"
