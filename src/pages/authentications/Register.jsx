@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 function Register() {
     return (
@@ -274,9 +274,9 @@ function Register() {
                                         className="mt-1 h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded" />
                                     <label htmlFor="terms" className="ml-2 text-sm text-gray-600 dark:text-gray-400">
                                         I agree to the
-                                        <a href="#" className="text-primary-600 hover:text-primary-500 mx-2">Terms and Conditions</a>
+                                        <Link to="/termsPrivacy" className="text-primary-600 hover:text-primary-500 mx-2">Terms and Conditions</Link>
                                         and
-                                        <a href="#" className="text-primary-600 hover:text-primary-500 mx-2">Privacy Policy</a>
+                                        <Link to="/termsPrivacy" className="text-primary-600 hover:text-primary-500 mx-2">Privacy Policy</Link>
                                     </label>
                                 </div>
 

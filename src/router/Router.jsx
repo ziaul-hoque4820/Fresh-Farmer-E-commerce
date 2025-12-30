@@ -7,6 +7,7 @@ import Farmers from '../pages/farmers/Farmers'
 import ProductsPage from '../pages/products/ProductsPage'
 import Login from '../pages/authentications/Login'
 import Register from '../pages/authentications/Register'
+import TermsPrivacy from '../component/TermsPrivacy'
 
 const router = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
             {
                 path: 'register',
                 element: <Register />
+            },
+            {
+                path: 'termsPrivacy',
+                element: <TermsPrivacy />
             },
         ]
     }
