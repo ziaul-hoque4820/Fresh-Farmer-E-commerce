@@ -9,6 +9,7 @@ import Login from '../pages/authentications/Login'
 import Register from '../pages/authentications/Register'
 import TermsPrivacy from '../component/TermsPrivacy'
 import HelpCenter from '../component/HelpCenter'
+import ContactUs from '../component/ContactUs'
 
 const router = createBrowserRouter([
     {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
             {
                 path: 'help-center',
                 element: <HelpCenter />
+            },
+            {
+                path: 'contact',
+                element: <ContactUs />
             },
         ]
     }

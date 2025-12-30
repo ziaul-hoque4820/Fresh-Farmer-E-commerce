@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const HelpCenter = () => {
     const [activeCategory, setActiveCategory] = useState("orders");
@@ -130,12 +131,12 @@ const HelpCenter = () => {
                         <p className="text-gray-600 mb-4">
                             If you couldn't find the answer you're looking for, feel free to contact our support team.
                         </p>
-                        <a
-                            href="/contact"
+                        <Link
+                            to="/contact"
                             className="inline-block bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition"
                         >
                             Contact Support
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
