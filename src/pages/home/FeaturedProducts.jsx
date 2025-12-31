@@ -1,6 +1,7 @@
 import React from 'react'
 import ProductCart from '../../component/ProductCart'
 import { NavLink } from 'react-router-dom'
+import { productsData } from '../../data/products'
 
 function FeaturedProducts() {
     return (
@@ -28,14 +29,11 @@ function FeaturedProducts() {
                 <div
                     className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
                 >
-                    <ProductCart />
-                    <ProductCart />
-                    <ProductCart />
-                    <ProductCart />
-                    <ProductCart />
-                    <ProductCart />
-                    <ProductCart />
-                    <ProductCart />
+                    {
+                        productsData.map(product => {
+                            return <ProductCart key={product.id} product={product} />
+                        })
+                    }
                 </div>
             </div>
         </section>

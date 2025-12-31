@@ -10,6 +10,7 @@ import Register from '../pages/authentications/Register'
 import TermsPrivacy from '../component/TermsPrivacy'
 import HelpCenter from '../component/HelpCenter'
 import ContactUs from '../component/ContactUs'
+import TermsOfService from '../component/TermsOfService'
 
 const router = createBrowserRouter([
     {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
             {
                 path: 'contact',
                 element: <ContactUs />
+            },
+            {
+                path: 'terms-service',
+                element: <TermsOfService />
             },
         ]
     }
