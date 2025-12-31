@@ -12,6 +12,7 @@ import HelpCenter from '../component/HelpCenter'
 import ContactUs from '../component/ContactUs'
 import TermsOfService from '../component/TermsOfService'
 import PrivacyPolicy from '../component/PrivacyPolicy'
+import Cart from '../pages/cart-checkout/Cart'
 
 const router = createBrowserRouter([
     {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
             {
                 path: 'policy',
                 element: <PrivacyPolicy />
+            },
+            {
+                path: 'cart',
+                element: <Cart />
             },
         ]
     }

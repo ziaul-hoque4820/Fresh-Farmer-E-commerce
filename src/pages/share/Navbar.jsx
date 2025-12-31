@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaBars, FaTimes, FaShoppingCart, FaChevronDown, FaMoon, FaSun, FaSearch, FaUser, FaSignOutAlt, } from "react-icons/fa";
 import Logo from "../../component/Logo";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -79,12 +79,12 @@ function Navbar() {
                     {/* Actions */}
                     <div className="flex items-center space-x-4">
                         {/* Cart */}
-                        <button className="relative p-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 cursor-pointer">
+                        <Link to={'/cart'} className="relative p-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 cursor-pointer">
                             <FaShoppingCart className="text-xl" />
                             <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                                 3
                             </span>
-                        </button>
+                        </Link>
 
                         {/* User Dropdown */}
                         <div
