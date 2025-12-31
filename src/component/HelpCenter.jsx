@@ -58,89 +58,91 @@ const HelpCenter = () => {
     const currentFaqs = faqs[activeCategory];
 
     return (
-        <div className="max-w-7xl mx-auto px-4 py-12 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-            {/* Header */}
-            <div className="text-center mb-10">
-                <h1 className="text-4xl font-bold text-green-700 mb-3 dark:text-green-500">
-                    Help Center
-                </h1>
-                <p className="text-gray-600 max-w-2xl mx-auto dark:text-gray-50">
-                    Find answers to common questions or learn how Frash Farmer works.
-                </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 ">
-                {/* Sidebar */}
-                <div className="bg-white dark:bg-gray-900 rounded-xl shadow-md p-4 dark:border-[1px] dark:border-green-600">
-                    <h3 className="font-semibold text-gray-800 mb-4 dark:text-gray-50">
-                        Help Categories
-                    </h3>
-                    <ul className="space-y-2 dark:text-gray-50">
-                        {categories.map((cat) => (
-                            <li key={cat.id}>
-                                <button
-                                    onClick={() => {
-                                        setActiveCategory(cat.id);
-                                        setOpenIndex(null);
-                                    }}
-                                    className={`w-full text-left px-4 py-2 rounded-lg transition  dark:text-gray-50
-                    ${activeCategory === cat.id
-                                            ? "bg-green-600 text-white"
-                                            : "hover:bg-green-50 hover:text-gray-900 text-gray-700"
-                                        }`}
-                                >
-                                    {cat.label}
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
+        <section className="dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+            <div className="max-w-7xl mx-auto px-4 py-12">
+                {/* Header */}
+                <div className="text-center mb-10">
+                    <h1 className="text-4xl font-bold text-green-700 mb-3 dark:text-green-500">
+                        Help Center
+                    </h1>
+                    <p className="text-gray-600 max-w-2xl mx-auto dark:text-gray-50">
+                        Find answers to common questions or learn how Frash Farmer works.
+                    </p>
                 </div>
 
-                {/* FAQ Section */}
-                <div className="lg:col-span-3 space-y-4">
-                    {currentFaqs.map((item, index) => (
-                        <div
-                            key={index}
-                            className="bg-white rounded-xl shadow-md"
-                        >
-                            <button
-                                onClick={() =>
-                                    setOpenIndex(openIndex === index ? null : index)
-                                }
-                                className="w-full flex justify-between items-center px-6 py-4 text-left font-semibold text-gray-800"
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 ">
+                    {/* Sidebar */}
+                    <div className="bg-white dark:bg-gray-900 rounded-xl shadow-md p-4 dark:border-[1px] dark:border-green-600">
+                        <h3 className="font-semibold text-gray-800 mb-4 dark:text-gray-50">
+                            Help Categories
+                        </h3>
+                        <ul className="space-y-2 dark:text-gray-50">
+                            {categories.map((cat) => (
+                                <li key={cat.id}>
+                                    <button
+                                        onClick={() => {
+                                            setActiveCategory(cat.id);
+                                            setOpenIndex(null);
+                                        }}
+                                        className={`w-full text-left px-4 py-2 rounded-lg transition  dark:text-gray-50
+                    ${activeCategory === cat.id
+                                                ? "bg-green-600 text-white"
+                                                : "hover:bg-green-50 hover:text-gray-900 text-gray-700"
+                                            }`}
+                                    >
+                                        {cat.label}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* FAQ Section */}
+                    <div className="lg:col-span-3 space-y-4">
+                        {currentFaqs.map((item, index) => (
+                            <div
+                                key={index}
+                                className="bg-white rounded-xl shadow-md"
                             >
-                                {item.q}
-                                <span className="text-xl">
-                                    {openIndex === index ? "−" : "+"}
-                                </span>
-                            </button>
+                                <button
+                                    onClick={() =>
+                                        setOpenIndex(openIndex === index ? null : index)
+                                    }
+                                    className="w-full flex justify-between items-center px-6 py-4 text-left font-semibold text-gray-800"
+                                >
+                                    {item.q}
+                                    <span className="text-xl">
+                                        {openIndex === index ? "−" : "+"}
+                                    </span>
+                                </button>
 
-                            {openIndex === index && (
-                                <div className="px-6 pb-4 text-gray-600 leading-relaxed">
-                                    {item.a}
-                                </div>
-                            )}
+                                {openIndex === index && (
+                                    <div className="px-6 pb-4 text-gray-600 leading-relaxed">
+                                        {item.a}
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+
+                        {/* CTA */}
+                        <div className="bg-green-50 border border-green-200 rounded-xl p-6 mt-6">
+                            <h4 className="font-semibold text-gray-800 mb-2">
+                                Still need help?
+                            </h4>
+                            <p className="text-gray-600 mb-4">
+                                If you couldn't find the answer you're looking for, feel free to contact our support team.
+                            </p>
+                            <Link
+                                to="/contact"
+                                className="inline-block bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition"
+                            >
+                                Contact Support
+                            </Link>
                         </div>
-                    ))}
-
-                    {/* CTA */}
-                    <div className="bg-green-50 border border-green-200 rounded-xl p-6 mt-6">
-                        <h4 className="font-semibold text-gray-800 mb-2">
-                            Still need help?
-                        </h4>
-                        <p className="text-gray-600 mb-4">
-                            If you couldn't find the answer you're looking for, feel free to contact our support team.
-                        </p>
-                        <Link
-                            to="/contact"
-                            className="inline-block bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition"
-                        >
-                            Contact Support
-                        </Link>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

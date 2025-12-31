@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { termsData } from "../data/terms-Privacy";
+import { privacyData } from "../data/terms-Privacy";
 
-const TermsOfService = () => {
+const PrivacyPolicy = () => {
     const [activeId, setActiveId] = useState(null);
 
     const toggle = (id) => {
@@ -14,20 +14,20 @@ const TermsOfService = () => {
                 {/* Header */}
                 <header className="mb-10 text-center">
                     <h1 className="text-4xl font-bold text-green-700 mb-3 dark:text-green-500">
-                        Terms of Service
+                        Privacy Policy
                     </h1>
                     <p className="text-gray-600 max-w-2xl mx-auto dark:text-white">
-                        Please read these terms carefully before using the Fresh Farmer
-                        platform.
+                        Learn how Fresh Farmer collects, uses, and protects your personal
+                        information.
                     </p>
                 </header>
 
                 {/* Content */}
                 <div className="space-y-4">
-                    {termsData.map((item) => (
+                    {privacyData.map((item) => (
                         <div
                             key={item.id}
-                            className="bg-white border border-gray-200 rounded-xl shadow-sm transition hover:shadow-md dark:bg-gray-900 "
+                            className="bg-white border border-gray-200 rounded-xl shadow-sm transition hover:shadow-md dark:bg-gray-900"
                         >
                             <button
                                 onClick={() => toggle(item.id)}
@@ -59,4 +59,4 @@ const TermsOfService = () => {
     );
 };
 
-export default TermsOfService;
+export default PrivacyPolicy;

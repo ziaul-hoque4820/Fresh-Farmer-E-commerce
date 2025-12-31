@@ -78,3 +78,74 @@ export const termsData = [
             "These terms may be updated at any time. Continued use of the platform implies acceptance of the updated terms."
     }
 ];
+
+
+export const privacyData = [
+    {
+        id: 1,
+        title: "Introduction",
+        description:
+            "Fresh Farmer values your privacy. This policy explains how we collect, use, and protect user data across our platform for all user roles."
+    },
+    {
+        id: 2,
+        title: "Data We Collect",
+        description:
+            "We collect personal information such as name, email, phone number, address, and usage data to provide better services."
+    },
+    {
+        id: 3,
+        title: "Normal User (Buyer) Data Usage",
+        description:
+            "Buyer information is used to process orders, manage deliveries, handle payments, and improve shopping experience."
+    },
+    {
+        id: 4,
+        title: "Farmer Data Usage",
+        description:
+            "Farmer information is used to manage product listings, track sales, process payouts, and ensure product authenticity."
+    },
+    {
+        id: 5,
+        title: "Admin Data Access",
+        description:
+            "Admins have controlled access to user and farmer data strictly for platform management, security, and support purposes."
+    },
+    {
+        id: 6,
+        title: "Payment Information",
+        description:
+            "Payment-related data is securely processed through trusted third-party payment gateways. Fresh Farmer does not store card details."
+    },
+    {
+        id: 7,
+        title: "Cookies & Tracking",
+        description:
+            "We use cookies and similar technologies to enhance user experience, analyze traffic, and improve our services."
+    },
+    {
+        id: 8,
+        title: "Data Sharing",
+        description:
+            "User data is never sold. Information may be shared only with service providers necessary for app functionality."
+    },
+    {
+        id: 9,
+        title: "Data Security",
+        description:
+            "We implement industry-standard security measures to protect data from unauthorized access, loss, or misuse."
+    },
+    {
+        id: 10,
+        title: "User Rights",
+        description:
+            "Users can access, update, or request deletion of their personal data according to applicable laws."
+    },
+    {
+        id: 11,
+        title: "Policy Updates",
+        description:
+            "Fresh Farmer may update this privacy policy from time to time. Changes will be notified through the app."
+    }
+];
+

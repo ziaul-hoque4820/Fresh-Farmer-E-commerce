@@ -11,6 +11,7 @@ import TermsPrivacy from '../component/TermsPrivacy'
 import HelpCenter from '../component/HelpCenter'
 import ContactUs from '../component/ContactUs'
 import TermsOfService from '../component/TermsOfService'
+import PrivacyPolicy from '../component/PrivacyPolicy'
 
 const router = createBrowserRouter([
     {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
             {
                 path: 'terms-service',
                 element: <TermsOfService />
+            },
+            {
+                path: 'policy',
+                element: <PrivacyPolicy />
             },
         ]
     }
