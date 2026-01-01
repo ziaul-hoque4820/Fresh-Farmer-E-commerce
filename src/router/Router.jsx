@@ -13,6 +13,7 @@ import ContactUs from '../component/ContactUs'
 import TermsOfService from '../component/TermsOfService'
 import PrivacyPolicy from '../component/PrivacyPolicy'
 import Cart from '../pages/cart-checkout/Cart'
+import MyOrders from '../pages/my-orders/MyOrders'
 
 const router = createBrowserRouter([
     {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
             {
                 path: 'cart',
                 element: <Cart />
+            },
+            {
+                path: 'my-orders',
+                element: <MyOrders />
             },
         ]
     }
