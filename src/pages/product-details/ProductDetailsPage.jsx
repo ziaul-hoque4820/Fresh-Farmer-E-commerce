@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import ProductDetailsCart from './ProductDetailsCart'
 import ReviewSummary from './ReviewSummary'
+import ProductReviews from './ProductReviews'
 
 function ProductDetailsPage() {
     return (
@@ -46,6 +47,9 @@ function ProductDetailsPage() {
 
                 {/* Review Summary */}
                 <ReviewSummary />
+
+                {/* Individual Reviews  */}
+                <ProductReviews />
                 
             </div>
 
