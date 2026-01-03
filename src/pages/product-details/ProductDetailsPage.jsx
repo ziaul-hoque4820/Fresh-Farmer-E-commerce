@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import ProductDetailsCart from './ProductDetailsCart'
 import ReviewSummary from './ReviewSummary'
 import ProductReviews from './ProductReviews'
+import RelatedProducts from './RelatedProducts'
 
 function ProductDetailsPage() {
     return (
@@ -28,32 +29,32 @@ function ProductDetailsPage() {
                         </li>
                     </ol>
                 </nav>
-            </div>
 
-            {/* Product Details  */}
-            <ProductDetailsCart />
+                {/* Product Details  */}
+                <ProductDetailsCart />
 
-            {/* Reviews Section  */}
-            <div className="mt-16">
-                <div className="flex items-center justify-between mb-8">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                        Customer Reviews
-                    </h2>
-                    <button
-                        className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg font-medium transition">
-                        Write a Review
-                    </button>
+                {/* Reviews Section  */}
+                <div className="mt-16">
+                    <div className="flex items-center justify-between mb-8">
+                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                            Customer Reviews
+                        </h2>
+                        <button
+                            className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg font-medium transition">
+                            Write a Review
+                        </button>
+                    </div>
+
+                    {/* Review Summary */}
+                    <ReviewSummary />
+
+                    {/* Individual Reviews  */}
+                    <ProductReviews />
                 </div>
 
-                {/* Review Summary */}
-                <ReviewSummary />
-
-                {/* Individual Reviews  */}
-                <ProductReviews />
-                
+                {/* Related Products */}
+                <RelatedProducts />
             </div>
-
-
         </section>
     )
 }
