@@ -17,6 +17,7 @@ import MyOrders from '../pages/my-orders/MyOrders'
 import AddNewProduct from '../pages/add-new-product/AddNewProduct'
 import ManageProducts from '../pages/manage-products/ManageProducts'
 import ProductDetailsPage from '../pages/product-details/ProductDetailsPage'
+import PaymentPage from '../pages/payment/PaymentPage'
 
 const router = createBrowserRouter([
     {
@@ -86,6 +87,10 @@ const router = createBrowserRouter([
             {
                 path: 'product-details',
                 element: <ProductDetailsPage />
+            },
+            {
+                path: 'payment',
+                element: <PaymentPage />
             },
         ]
     }
