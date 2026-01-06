@@ -18,6 +18,7 @@ import AddNewProduct from '../pages/add-new-product/AddNewProduct'
 import ManageProducts from '../pages/manage-products/ManageProducts'
 import ProductDetailsPage from '../pages/product-details/ProductDetailsPage'
 import PaymentPage from '../pages/payment/PaymentPage'
+import ForgotPassword from '../pages/authentications/ForgotPassword'
 
 const router = createBrowserRouter([
     {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
             {
                 path: 'register',
                 element: <Register />
+            },
+            {
+                path: 'forgot-password',
+                element: <ForgotPassword />
             },
             {
                 path: 'termsPrivacy',

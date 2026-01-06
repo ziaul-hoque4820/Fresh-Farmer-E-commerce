@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import Logo from '../../component/Logo'
 
 function Login() {
@@ -96,12 +96,11 @@ function Login() {
                                         Remember me
                                     </label>
                                 </div>
-                                <a
-                                    href="forgot-password.html"
+                                <Link to={'/forgot-password'}
                                     className="text-sm text-primary-600 hover:text-primary-500"
                                 >
                                     Forgot password?
-                                </a>
+                                </Link>
                             </div>
 
                             <button
