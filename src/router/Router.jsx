@@ -19,6 +19,7 @@ import ManageProducts from '../pages/manage-products/ManageProducts'
 import ProductDetailsPage from '../pages/product-details/ProductDetailsPage'
 import PaymentPage from '../pages/payment/PaymentPage'
 import ForgotPassword from '../pages/authentications/ForgotPassword'
+import PaymentSuccess from '../pages/payment/PaymentSuccess'
 
 const router = createBrowserRouter([
     {
@@ -96,6 +97,10 @@ const router = createBrowserRouter([
             {
                 path: 'payment',
                 element: <PaymentPage />
+            },
+            {
+                path: 'success-payment',
+                element: <PaymentSuccess />
             },
         ]
     }
