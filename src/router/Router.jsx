@@ -20,6 +20,7 @@ import ProductDetailsPage from '../pages/product-details/ProductDetailsPage'
 import PaymentPage from '../pages/payment/PaymentPage'
 import ForgotPassword from '../pages/authentications/ForgotPassword'
 import PaymentSuccess from '../pages/payment/PaymentSuccess'
+import AuthLayout from '../layout/AuthLayout'
 
 const router = createBrowserRouter([
     {
@@ -41,18 +42,6 @@ const router = createBrowserRouter([
             {
                 path: 'about',
                 element: <About />
-            },
-            {
-                path: 'login',
-                element: <Login />
-            },
-            {
-                path: 'register',
-                element: <Register />
-            },
-            {
-                path: 'forgot-password',
-                element: <ForgotPassword />
             },
             {
                 path: 'termsPrivacy',
@@ -102,6 +91,24 @@ const router = createBrowserRouter([
                 path: 'success-payment',
                 element: <PaymentSuccess />
             },
+        ]
+    },
+    {
+        path: '/',
+        Component: AuthLayout,
+        children: [
+            {
+                path: 'login',
+                element: <Login />
+            },
+            {
+                path: 'register',
+                element: <Register />
+            },
+            {
+                path: 'forgot-password',
+                element: <ForgotPassword />
+            }
         ]
     }
 ])

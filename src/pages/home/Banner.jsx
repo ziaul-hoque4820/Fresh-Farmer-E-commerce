@@ -4,10 +4,15 @@ import Counter from '../../component/Counter'
 function Banner() {
     return (
         <section
-            className="relative bg-gradient-to-r from-primary-600 to-primary-800 text-white"
+            className="relative bg-gradient-to-r from-primary-600 to-primary-800 text-white bg-cover bg-center bg-no-repeat"
+            style={{
+                backgroundImage: `url("https://images.pexels.com/photos/30200995/pexels-photo-30200995.jpeg")`,
+            }}
         >
             <div className="absolute inset-0 bg-black opacity-20"></div>
-            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24"
+
+            >
                 <div className="text-center">
                     <h1 className="text-4xl md:text-6xl font-bold mb-6">
                         Fresh from Farm to Your Table
