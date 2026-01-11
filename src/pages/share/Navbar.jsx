@@ -80,12 +80,14 @@ function Navbar() {
                                     }`
                                 }
                             >
-                                {item.label}
-                                {({ isActive }) =>
-                                    isActive && (
-                                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary-500" />
-                                    )
-                                }
+                                {({ isActive }) => (
+                                    <>
+                                        {item.label}
+                                        {isActive && (
+                                            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary-500" />
+                                        )}
+                                    </>
+                                )}
                             </NavLink>
                         ))}
                     </div>

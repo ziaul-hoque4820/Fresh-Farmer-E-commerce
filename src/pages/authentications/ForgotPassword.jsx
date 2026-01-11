@@ -1,7 +1,29 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import useAuth from '../../hooks/useAuth'
+import { useForm } from 'react-hook-form';
 
 function ForgotPassword() {
+    const { forgetPassword } = useAuth();
+    const navigate = useNavigate();
+
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const onSubmit = (data) => {
+        forgetPassword(data.email)
+            .then(() => {
+                alert('Password reset email sent! Please check your email.');
+                navigate('/login');
+            })
+            .catch(error => {
+                if (error.code === 'auth/user-not-found') {
+                    errors("No account found with this email")
+                } else {
+                    errors("Failed to send reset link");
+                }
+            })
+    }
+
     return (
         <section className="dark:bg-gray-900 text-gray-900 dark:text-gray-100">
             <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -23,17 +45,31 @@ function ForgotPassword() {
 
                     {/* Reset Password Form */}
                     <div className="bg-white dark:bg-gray-800 py-8 px-6 shadow-xl rounded-2xl">
-                        <form className="space-y-6" action="#" method="POST" id="resetForm">
+                        <form className="space-y-6" onSubmit={handleSubmit(onSubmit)} id="resetForm">
                             <div>
                                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                                     Email Address
                                 </label>
                                 <div className="relative">
-                                    <input id="email" name="email" type="email" autoComplete="email" required
-                                        className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white"
+                                    <input id="email" name="email" type="email" autoComplete="email"
+                                        {
+                                        ...register('email', {
+                                            required: 'Email is required',
+                                            pattern: {
+                                                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                                message: "Invalid email address",
+                                            },
+                                        })
+                                        }
+                                        className={`w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white ${errors.email ? "border-red-500" : ""}`}
                                         placeholder="john@example.com" />
                                     <i className="fas fa-envelope absolute left-3 top-3.5 text-gray-400"></i>
                                 </div>
+                                {errors.email && (
+                                    <p className="text-sm italic mt-1 text-red-500">
+                                        {errors.email.message}
+                                    </p>
+                                )}
                             </div>
 
                             <button type="submit"
