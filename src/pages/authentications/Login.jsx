@@ -1,8 +1,22 @@
-import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import Logo from '../../component/Logo'
+import React, { useState } from 'react'
+import { Link, NavLink} from 'react-router-dom'
+
+import { useForm } from 'react-hook-form';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 function Login() {
+    const [showPassword, setShowPassword] = useState(false);
+
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const onSubmit = (data) => {
+        console.log(data);
+    }
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
     return (
         <div className='dark:bg-gray-900 text-gray-900 dark:text-gray-100'>
             <div
@@ -25,7 +39,7 @@ function Login() {
                     <div
                         className="bg-white dark:bg-gray-800 py-8 px-6 shadow-xl rounded-2xl"
                     >
-                        <form className="space-y-6" action="#" method="POST">
+                        <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                             <div>
                                 <label
                                     htmlFor="email"
@@ -35,17 +49,28 @@ function Login() {
                                 </label>
                                 <div className="relative">
                                     <input
+                                        {
+                                        ...register('email', {
+                                            required: 'Email is required',
+                                            pattern: {
+                                                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                                message: "Invalid email address"
+                                            },
+                                        })
+                                        }
                                         id="email"
                                         name="email"
                                         type="email"
-                                        required
-                                        className="w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                                        className={`w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${errors.email ? 'border-red-500' : ''}`}
                                         placeholder="john@example.com"
                                     />
                                     <i
                                         className="fas fa-envelope absolute left-3 top-3.5 text-gray-400"
                                     ></i>
                                 </div>
+                                {errors.email && (
+                                    <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+                                )}
                             </div>
 
                             <div>
@@ -57,10 +82,18 @@ function Login() {
                                 </label>
                                 <div className="relative">
                                     <input
+                                        {
+                                        ...register('password', {
+                                            required: 'Password is required',
+                                            minLength: {
+                                                value: 6,
+                                                message: 'Password must be at least 6 characters long'
+                                            },
+                                        })
+                                        }
                                         id="password"
                                         name="password"
-                                        type="password"
-                                        required
+                                        type={showPassword ? "text" : "password"}
                                         className="w-full pl-10 pr-10 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                                         placeholder="••••••••"
                                     />
@@ -68,14 +101,18 @@ function Login() {
                                         className="fas fa-lock absolute left-3 top-3.5 text-gray-400"
                                     ></i>
                                     <button
+                                        onClick={togglePasswordVisibility}
                                         type="button"
-                                        className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                                        className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
                                     >
-                                        <i
-                                            className="fas fa-eye text-gray-400 hover:text-gray-600"
-                                        ></i>
+                                        {showPassword ? <FaEye size={18} /> : <FaEyeSlash size={18} />}
                                     </button>
                                 </div>
+                                {errors.password && (
+                                    <p className="text-sm mt-1 text-red-500">
+                                        {errors.password.message}
+                                    </p>
+                                )}
                             </div>
 
                             <div className="flex items-center justify-between">
@@ -117,8 +154,7 @@ function Login() {
                                 <div className="relative flex justify-center text-sm">
                                     <span
                                         className="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400"
-                                    >Or continue with</span
-                                    >
+                                    >Or continue with</span>
                                 </div>
                             </div>
 
