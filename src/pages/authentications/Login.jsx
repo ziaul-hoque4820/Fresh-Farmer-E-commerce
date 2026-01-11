@@ -1,17 +1,64 @@
 import React, { useState } from 'react'
-import { Link, NavLink} from 'react-router-dom'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import useAuth from '../../hooks/useAuth';
 
 function Login() {
+    const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const { signInUser, signInWithGoogle, signOutUser } = useAuth();
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state || '/';
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
         console.log(data);
-    }
+
+        signInUser(data.email, data.password)
+            .then(result => {
+                console.log(result.user);
+                navigate(from);
+            })
+            .catch(err => {
+                console.log(err.code);
+
+                if (err.code === "auth/invalid-credential") {
+                    setError(" No account found with this email!");
+                }
+                else if (err.code === "auth/wrong-password") {
+                    setError(" Wrong password! Try again.");
+                }
+                else if (err.code === "auth/invalid-email") {
+                    setError(" Invalid email format!");
+                }
+                else {
+                    setError(" Login failed! Try again later.");
+                }
+            })
+    };
+
+    const hangleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then(result => {
+                // Firebase Checks if this is a New user
+                const isNewUser = result._tokenResponse?.isNewUser;
+
+                if (isNewUser) {
+                    setError("This email is not approved for Google login! Go to Register first.");
+                    signOutUser();
+                    return;
+                }
+                navigate(from);
+            })
+            .catch(err => {
+                console.log(err.code);
+                setError("Google login failed! Try again.")
+            });
+    };
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -115,6 +162,13 @@ function Login() {
                                 )}
                             </div>
 
+                            {/* Global form error */}
+                            {error && (
+                                <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+                                    <p className="text-sm text-red-600 text-center">{error}</p>
+                                </div>
+                            )}
+
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center">
                                     <input
@@ -160,6 +214,7 @@ function Login() {
 
                             {/* Social Login  */}
                             <button
+                                onClick={hangleGoogleSignIn}
                                 type="button"
                                 className="w-full bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 py-3 px-4 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-600 transition duration-200 flex items-center justify-center space-x-2"
                             >
