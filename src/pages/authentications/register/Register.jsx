@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ProfileUpload from './ProfileUpload';
 import FormFields from './FormFields';
 import SocialLogin from './SocialLogin';
+import useAuth from '../../../hooks/useAuth';
+import { updateProfile } from 'firebase/auth';
 
 function Register() {
     const [err, setErr] = useState("");
@@ -11,18 +13,77 @@ function Register() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [bioLength, setBioLength] = useState(0);
+    const { createUser, signInWithGoogle } = useAuth();
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state || '/';
 
 
     const { register, handleSubmit, formState: { errors }, watch } = useForm();
     const password = watch("password");
 
     const handleGoogleRegister = () => {
+        signInWithGoogle()
+            .then((result) => {
+                console.log(result);
+                const user = result.user;
 
+                // update user info in the database
+                const userInfo = {
+                    name: user.displayName,
+                    email: user.email,
+                    photoURL: user.photoURL ? user.photoURL : null,
+                    role: 'buyer',  // default role
+                    created_at: new Date().toISOString(),
+                }
+
+                // Save user info to the backend
+
+                navigate(from);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     const onSubmit = (data) => {
         console.log("Form Data:", data);
+        createUser(data.email, data.password)
+            .then((result) => {
+                console.log(result);
 
+                const updateUser = result.user;
+
+                // update user info in the database
+                const userInfo = {
+                    name: data.fullName,
+                    email: data.email,
+                    photoURL: profilePic ? profilePic : null,
+                    role: data.role,   // default role
+                    bio: data.bio,
+                    created_at: new Date().toISOString(),
+                }
+
+                // Save user info to the backend
+
+
+                // Update Firebase displayName and photoURL
+                updateProfile(updateUser, {
+                    displayName: data.fullName,
+                    photoURL: profilePic ? profilePic : null
+                })
+                    .then(() => {
+                        console.log('Profile Update');
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+
+                navigate(from);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     };
 
     const togglePasswordVisibility = (field) => {
@@ -77,7 +138,7 @@ function Register() {
                                     showPassword={showPassword}
                                     showConfirmPassword={showConfirmPassword}
                                     togglePasswordVisibility={togglePasswordVisibility}
-                                    bioLength={[bioLength, setBioLength]} 
+                                    bioLength={[bioLength, setBioLength]}
                                     password={password}
                                 />
 
