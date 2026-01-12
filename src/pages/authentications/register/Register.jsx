@@ -6,6 +6,7 @@ import FormFields from './FormFields';
 import SocialLogin from './SocialLogin';
 import useAuth from '../../../hooks/useAuth';
 import { updateProfile } from 'firebase/auth';
+import axios from 'axios';
 
 function Register() {
     const [err, setErr] = useState("");
@@ -96,8 +97,30 @@ function Register() {
 
     const handleImageChange = async (e) => {
         const file = e.target.files[0];
+
         if (!file) return;
 
+        // oversize validation
+        if (file.size > 2 * 1024 * 1024) {
+            return setErr("Profile picture size should be less than 2MB");
+        }
+
+        // perview
+        const tempUrl = URL.createObjectURL(file);
+        setProfilePic(tempUrl);
+
+        // upload to imgbb
+        const formData = new FormData();
+        formData.append("image", file);
+
+        const imgbbKey = import.meta.env.VITE_IMGBB_KEY;
+        const url = `https://api.imgbb.com/1/upload?key=${imgbbKey}`;
+
+        const res = await axios.post(url, formData);
+        const uploadedURL = res.data.data.display_url;
+
+        // store uploaded url for firebase
+        setProfilePic(uploadedURL);
     };
 
     return (
