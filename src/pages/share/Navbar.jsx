@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { FaBars, FaTimes, FaShoppingCart, FaChevronDown, FaMoon, FaSun, FaUser, FaSignOutAlt, } from "react-icons/fa";
+import { FaBars, FaTimes, FaShoppingCart, FaChevronDown, FaMoon, FaSun, FaUser, FaSignOutAlt, FaChartBar, } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import Logo from "../../component/Logo";
 import useAuth from "../../hooks/useAuth";
@@ -137,14 +137,21 @@ function Navbar() {
                                                 <p className="text-sm font-medium dark:text-white">
                                                     {user.displayName}
                                                 </p>
-                                                <p className="text-xs text-gray-500">
+                                                <p className="text-xs text-gray-400">
                                                     {user.email}
                                                 </p>
                                             </div>
 
                                             <Link
+                                                to="/dashboard"
+                                                className="flex px-4 py-2 items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white"
+                                            >
+                                                <FaChartBar />
+                                                <span>Dashboard</span>
+                                            </Link>
+                                            <Link
                                                 to="/profile"
-                                                className="flex px-4 py-2 items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                                                className="flex px-4 py-2 items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white"
                                             >
                                                 <FaUser />
                                                 <span>Profile</span>
@@ -152,7 +159,7 @@ function Navbar() {
 
                                             <button
                                                 onClick={handleLogout}
-                                                className="flex w-full px-4 py-2 items-center space-x-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20"
+                                                className="flex w-full px-4 py-2 items-center space-x-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 cursor-pointer"
                                             >
                                                 <FaSignOutAlt />
                                                 <span>Logout</span>
@@ -202,12 +209,39 @@ function Navbar() {
                     ))}
 
                     {user ? (
-                        <button
-                            onClick={handleLogout}
-                            className="text-left text-red-600"
-                        >
-                            Logout
-                        </button>
+                        <div className="w-48 dark:bg-gray-800py-2">
+                            <div className="px-4 py-3 border-b">
+                                <p className="text-sm font-medium dark:text-white">
+                                    {user.displayName}
+                                </p>
+                                <p className="text-xs text-gray-400">
+                                    {user.email}
+                                </p>
+                            </div>
+
+                            <Link
+                                to="/dashboard"
+                                className="flex px-4 py-2 items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white"
+                            >
+                                <FaChartBar />
+                                <span>Dashboard</span>
+                            </Link>
+                            <Link
+                                to="/profile"
+                                className="flex px-4 py-2 items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white"
+                            >
+                                <FaUser />
+                                <span>Profile</span>
+                            </Link>
+
+                            <button
+                                onClick={handleLogout}
+                                className="flex w-full px-4 py-2 items-center space-x-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 cursor-pointer"
+                            >
+                                <FaSignOutAlt />
+                                <span>Logout</span>
+                            </button>
+                        </div>
                     ) : (
                         <Link
                             to="/login"

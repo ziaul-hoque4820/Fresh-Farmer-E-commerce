@@ -67,7 +67,7 @@ function Login() {
     return (
         <div className='dark:bg-gray-900 text-gray-900 dark:text-gray-100'>
             <div
-                className="min-h-screen flex items-center justify-center py-5 px-4 sm:px-6 lg:px-8"
+                className="min-h-screen flex items-center justify-center py-5 sm:px-2 lg:px-8"
             >
                 <div className="max-w-md w-full space-y-8">
                     {/* Header  */}

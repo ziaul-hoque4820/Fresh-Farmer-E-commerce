@@ -8,7 +8,7 @@ function AuthLayout() {
             <div className='max-w-6xl w-full bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row dark:bg-gray-900 text-gray-900 dark:text-gray-100'>
 
                 {/* Left Side - Form */}
-                <div className='w-full p-8 md:p-12 flex flex-col justify-center'>
+                <div className='w-full p-4 md:p-12 flex flex-col justify-center'>
                     <div className="flex items-center gap-2 py-3">
                         <Logo />
                     </div>

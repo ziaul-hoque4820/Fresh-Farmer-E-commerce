@@ -57,7 +57,7 @@ function Register() {
 
                 // update user info in the database
                 const userInfo = {
-                    name: data.fullName,
+                    name: data.firstName + ' ' + data.lastName,
                     email: data.email,
                     photoURL: profilePic ? profilePic : null,
                     role: data.role,   // default role
@@ -70,7 +70,7 @@ function Register() {
 
                 // Update Firebase displayName and photoURL
                 updateProfile(updateUser, {
-                    displayName: data.fullName,
+                    displayName: data.firstName + ' ' + data.lastName,
                     photoURL: profilePic ? profilePic : null
                 })
                     .then(() => {
@@ -144,7 +144,7 @@ function Register() {
 
                     {/* Registration Form */}
                     <div className="max-w-4xl mx-auto">
-                        <div className="bg-white dark:bg-gray-800 py-8 px-8 shadow-xl rounded-2xl">
+                        <div className="bg-white dark:bg-gray-800 py-8 px-2 rounded-2xl">
                             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                                 {/* Profile Upload */}
                                 <ProfileUpload
@@ -185,12 +185,12 @@ function Register() {
                                             Privacy Policy
                                         </Link>
                                     </label>
-                                    {errors?.terms && (
-                                        <p className="text-sm italic mt-1 text-red-500 block w-full">
-                                            {errors.terms.message}
-                                        </p>
-                                    )}
                                 </div>
+                                {errors?.terms && (
+                                    <p className="text-sm italic mt-1 text-red-500 block w-full">
+                                        {errors.terms.message}
+                                    </p>
+                                )}
 
                                 {/* Global Error */}
                                 {err && (
