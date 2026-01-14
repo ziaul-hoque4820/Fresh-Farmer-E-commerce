@@ -1,6 +1,9 @@
 import React from 'react'
 
-function ProductDetailsCart() {
+function ProductDetailsCart({ product }) {
+    console.log(product);
+
+
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -8,37 +11,24 @@ function ProductDetailsCart() {
                 <div className="space-y-4">
                     <div className="aspect-square bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
                         <img id="mainImage"
-                            src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=600&h=600&fit=crop"
-                            alt="Fresh Tomatoes" className="w-full h-full object-cover" />
+                            src={product?.thumbnail}
+                            alt={product?.name} className="w-full h-full object-cover" />
                     </div>
 
                     {/* Thumbnail Images  */}
                     <div className="grid grid-cols-5 gap-2">
-                        <button
-                            className="aspect-square bg-white dark:bg-gray-800 rounded-lg overflow-hidden border-2 border-primary-500">
-                            <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=1000&h=1000&fit=crop"
-                                alt="Tomatoes 1" className="w-full h-full object-cover" />
-                        </button>
-                        <button
-                            className="aspect-square bg-white dark:bg-gray-800 rounded-lg overflow-hidden border-2 border-transparent hover:border-primary-500">
-                            <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=10000&h=10000&fit=crop"
-                                alt="Tomatoes 2" className="w-full h-full object-cover" />
-                        </button>
-                        <button
-                            className="aspect-square bg-white dark:bg-gray-800 rounded-lg overflow-hidden border-2 border-transparent hover:border-primary-500">
-                            <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=1000&h=1000&fit=crop"
-                                alt="Tomatoes 3" className="w-full h-full object-cover" />
-                        </button>
-                        <button
-                            className="aspect-square bg-white dark:bg-gray-800 rounded-lg overflow-hidden border-2 border-transparent hover:border-primary-500">
-                            <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=1000&h=1000&fit=crop"
-                                alt="Tomatoes 4" className="w-full h-full object-cover" />
-                        </button>
-                        <button
-                            className="aspect-square bg-white dark:bg-gray-800 rounded-lg overflow-hidden border-2 border-transparent hover:border-primary-500">
-                            <img src="https://images.unsplash.com/photo-1607305387299-a3d9611cd469?w=1000&h=1000&fit=crop"
-                                alt="Tomatoes 5" className="w-full h-full object-cover" />
-                        </button>
+                        {product.images.map((img, index) => (
+                            <button
+                                key={index}
+                                className="aspect-square bg-white dark:bg-gray-800 rounded-lg overflow-hidden border-2 border-transparent hover:border-primary-500"
+                            >
+                                <img
+                                    src={img}
+                                    alt={`${product.name} ${index + 1}`}
+                                    className="w-full h-full object-cover"
+                                />
+                            </button>
+                        ))}
                     </div>
                 </div>
 
@@ -47,17 +37,22 @@ function ProductDetailsCart() {
                     {/* Product Header */}
                     <div>
                         <div className="flex items-center space-x-2 mb-2">
-                            <span
-                                className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded-full text-xs font-medium">Organic</span>
-                            <span
-                                className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded-full text-xs font-medium">Fresh</span>
+                            {product.tags.map((tag, index) => (
+                                <span
+                                    key={index}
+                                    className={`${tag === "Organic" ? "bg-green-100" : "bg-red-100"}  dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded-full text-xs font-medium`}
+                                >
+                                    {tag}
+                                </span>
+                            ))}
                         </div>
+
                         <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                            Fresh Tomatoes
+                            {product.name}
                         </h2>
                         <p className="text-lg text-gray-600 dark:text-gray-400">
                             Produced by
-                            <span className="font-semibold text-primary-600 dark:text-primary-400">Rahim's Farm</span>
+                            <span className="font-semibold text-primary-600 dark:text-primary-400 ml-2">{product.farmer.farmName}</span>
                         </p>
                     </div>
 
@@ -71,9 +66,9 @@ function ProductDetailsCart() {
                                 <i className="fas fa-star"></i>
                                 <i className="fas fa-star"></i>
                             </div>
-                            <span className="text-lg font-semibold text-gray-900 dark:text-white">4.8</span>
+                            <span className="text-lg font-semibold text-gray-900 dark:text-white">{product.rating.average}</span>
                         </div>
-                        <span className="text-gray-500 dark:text-gray-400">(127 reviews)</span>
+                        <span className="text-gray-500 dark:text-gray-400">({product.rating.totalReviews} reviews)</span>
                         <button className="text-primary-600 dark:text-primary-400 hover:underline">
                             Write a review
                         </button>
@@ -91,7 +86,7 @@ function ProductDetailsCart() {
                                     Available Stock
                                 </p>
                                 <p className="text-lg font-semibold text-gray-900 dark:text-white">
-                                    50 kg
+                                    {product.price} {product.unit}
                                 </p>
                             </div>
                         </div>
@@ -99,7 +94,7 @@ function ProductDetailsCart() {
                         {/* Location */}
                         <div className="flex items-center text-gray-600 dark:text-gray-400 mb-4">
                             <i className="fas fa-map-marker-alt mr-2"></i>
-                            <span>Sylhet, Bangladesh</span>
+                            <span>{product.farmer.location}</span>
                         </div>
                     </div>
 
@@ -113,7 +108,7 @@ function ProductDetailsCart() {
                                     className="w-10 h-10 rounded-lg border border-gray-300 dark:border-gray-600 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-700">
                                     <i className="fas fa-minus text-sm"></i>
                                 </button>
-                                <input type="number" defaultValue="1" min="1" max="50"
+                                <input type="number" defaultValue="1" min="1" max={product.stock.quantity}
                                     className="w-20 text-center py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white" />
                                 <button
                                     className="w-10 h-10 rounded-lg border border-gray-300 dark:border-gray-600 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -151,10 +146,10 @@ function ProductDetailsCart() {
                                 alt="Rahim" className="w-12 h-12 rounded-full" />
                             <div>
                                 <h4 className="font-semibold text-gray-900 dark:text-white">
-                                    Rahim Ahmed
+                                    {product.farmer.name}
                                 </h4>
                                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                                    Farmer since 2015
+                                    Farmer since {product.createdAt}
                                 </p>
                             </div>
 

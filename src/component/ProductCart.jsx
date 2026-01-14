@@ -1,9 +1,22 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useCart } from '../context/cartContext/CartProvider';
 
 function ProductCart({ product }) {
+    const navigate = useNavigate();
+
+    const { addToCart } = useCart();
+
     if (!product) return null;
+
+    const handleAddToCart = (e) => {
+        e.stopPropagation();
+        addToCart(product.id);
+    }
+
     return (
         <div
+            onClick={() => navigate(`/product-details/${product.id}`)}
             className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300"
         >
             <div className="relative">
@@ -15,8 +28,7 @@ function ProductCart({ product }) {
                 <div className="absolute top-3 left-3">
                     <span
                         className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium"
-                    >{product.tags[0]}</span
-                    >
+                    >{product.tags[0]}</span>
                 </div>
                 <div className="absolute top-3 right-3">
                     <button
@@ -51,16 +63,15 @@ function ProductCart({ product }) {
                     <div>
                         <span
                             className="text-2xl font-bold text-primary-600 dark:text-primary-400"
-                        >৳{product.price} </span
-                        >
+                        >৳{product.price} </span>
                         <span
                             className="text-sm text-gray-500 dark:text-gray-400"
-                        >/{product.stock.unit}</span
-                        >
+                        >/{product.stock.unit}</span>
                     </div>
                     <span className="text-sm text-gray-500 dark:text-gray-400">Stock: {product.stock.quantity} {product.stock.unit}</span>
                 </div>
                 <button
+                    onClick={handleAddToCart}
                     className="w-full bg-primary-600 hover:bg-primary-700 text-white py-2 rounded-lg font-medium transition cursor-pointer">
                     Add to Cart
                 </button>

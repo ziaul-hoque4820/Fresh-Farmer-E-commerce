@@ -4,7 +4,7 @@ export const productsData = [
         name: "Fresh Tomatoes",
         slug: "fresh-tomatoes",
         description: "Fresh organic tomatoes directly harvested from local farms.",
-        images: ["https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&h=300&fit=crop"],
+        images: ["https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&h=300&fit=crop", "https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?q=80&w=715&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", "https://images.unsplash.com/photo-1559181567-c3190ca9959b?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", "https://images.unsplash.com/photo-1552010099-5dc86fcfaa38?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
         thumbnail: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&h=300&fit=crop",
         category: "Vegetables",
         tags: ["Organic", "Fresh", "Tomato"],

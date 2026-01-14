@@ -1,11 +1,23 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import ProductDetailsCart from './ProductDetailsCart'
 import ReviewSummary from './ReviewSummary'
 import ProductReviews from './ProductReviews'
 import RelatedProducts from './RelatedProducts'
+import { productsData } from '../../data/products'
 
 function ProductDetailsPage() {
+
+    const { id } = useParams();
+
+    const product = productsData.find(item => item.id === String(id));
+    console.log(product);
+    
+
+    if (!product) {
+        return <div className="p-10">Product not found</div>
+    }
+
     return (
         <section className='dark:bg-gray-900 text-gray-900 dark:text-gray-100'>
             {/* Breadcrumb  */}
@@ -31,7 +43,9 @@ function ProductDetailsPage() {
                 </nav>
 
                 {/* Product Details  */}
-                <ProductDetailsCart />
+                <ProductDetailsCart
+                    product={product}
+                />
 
                 {/* Reviews Section  */}
                 <div className="mt-16">
