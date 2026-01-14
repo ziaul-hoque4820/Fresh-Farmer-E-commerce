@@ -73,6 +73,7 @@ function CartItem({ item, removeItem, updateQuantity, calculateItemTotal }) {
                         <div className="flex items-center space-x-4 mb-4 sm:mb-0">
                             <div className="flex items-center border border-gray-300 dark:border-gray-600 rounded-lg">
                                 <button
+
                                     onClick={() => updateQuantity(item.id, item.cartQuantity - 1)}
                                     className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-l-lg transition duration-150 dark:text-white"
                                     aria-label="Decrease quantity"

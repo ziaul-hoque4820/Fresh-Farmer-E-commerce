@@ -1,7 +1,27 @@
 import React from 'react'
+import { useState } from 'react';
+import { useCart } from '../../context/cartContext/CartProvider';
 
 function ProductDetailsCart({ product }) {
-    console.log(product);
+    const [quantity, setQuantity] = useState(1);
+
+    const { addToCart } = useCart();
+
+    const handleAddToCart = () => {
+        addToCart(product.id, quantity)
+    }
+
+    const increaseQty = () => {
+        if (quantity < product.stock.quantity) {
+            setQuantity(prev => prev + 1);
+        }
+    };
+
+    const decreaseQty = () => {
+        if (quantity > 1) {
+            setQuantity(prev => prev - 1);
+        }
+    };
 
 
     return (
@@ -105,12 +125,15 @@ function ProductDetailsCart({ product }) {
                                 (kg)</label>
                             <div className="flex items-center space-x-3">
                                 <button
+                                    onClick={decreaseQty}
                                     className="w-10 h-10 rounded-lg border border-gray-300 dark:border-gray-600 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-700">
                                     <i className="fas fa-minus text-sm"></i>
                                 </button>
-                                <input type="number" defaultValue="1" min="1" max={product.stock.quantity}
+                                <input type="number" value={quantity} min="1" max={product.stock.quantity}
+                                    onChange={(e) => setQuantity(Number(e.target.value))}
                                     className="w-20 text-center py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white" />
                                 <button
+                                    onClick={increaseQty}
                                     className="w-10 h-10 rounded-lg border border-gray-300 dark:border-gray-600 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-700">
                                     <i className="fas fa-plus text-sm"></i>
                                 </button>
@@ -128,6 +151,7 @@ function ProductDetailsCart({ product }) {
                             Buy Now
                         </button>
                         <button
+                            onClick={handleAddToCart}
                             className="w-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white py-3 px-6 rounded-lg font-medium transition">
                             <i className="fas fa-shopping-cart mr-2"></i>
                             Add to Cart

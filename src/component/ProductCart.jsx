@@ -11,7 +11,7 @@ function ProductCart({ product }) {
 
     const handleAddToCart = (e) => {
         e.stopPropagation();
-        addToCart(product.id);
+        addToCart(product.id, 1);
     }
 
     return (

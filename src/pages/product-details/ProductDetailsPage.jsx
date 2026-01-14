@@ -11,7 +11,6 @@ function ProductDetailsPage() {
     const { id } = useParams();
 
     const product = productsData.find(item => item.id === String(id));
-    console.log(product);
     
 
     if (!product) {
@@ -37,7 +36,7 @@ function ProductDetailsPage() {
                             <i className="fas fa-chevron-right text-gray-400 text-xs"></i>
                         </li>
                         <li className="text-gray-900 dark:text-white">
-                            Fresh Tomatoes
+                            {product.name}
                         </li>
                     </ol>
                 </nav>

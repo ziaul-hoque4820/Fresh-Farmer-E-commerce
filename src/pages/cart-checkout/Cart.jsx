@@ -6,56 +6,23 @@ import EmptyCard from './EmptyCard';
 import TrustBadges from './TrustBadges';
 import CartItem from './CartItem';
 import OrderSummary from './OrderSummary';
+import { useCart } from '../../context/cartContext/CartProvider';
+import { productsData } from '../../data/products'
 
 const Cart = () => {
-    // Cart state with your product structure
-    const [cartItems, setCartItems] = useState([
-        {
-            id: "prod_002",
-            name: "Organic Potatoes",
-            description: "Naturally grown potatoes with rich taste and texture.",
-            images: ["https://images.unsplash.com/photo-1582515073490-dc84c8f76c8d?w=400&h=300&fit=crop"],
-            thumbnail: "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=400&h=300&fit=crop",
-            category: "Vegetables",
-            tags: ["Organic", "Root"],
-            farmer: {
-                name: "Shumi Rahman",
-                farmName: "Shumi Agro",
-                location: "Rangpur, Bangladesh",
-            },
-            price: 38,
-            currency: "BDT",
-            unit: "kg",
-            discount: { isDiscounted: true, discountPrice: 34 },
-            stock: { quantity: 80, unit: "kg", inStock: true },
-            rating: { average: 4.7, totalReviews: 98 },
-            isOrganic: true,
-            isCertified: true,
-            cartQuantity: 2
-        },
-        {
-            id: "prod_003",
-            name: "Fresh Strawberries",
-            description: "Sweet and juicy strawberries from our organic farm.",
-            thumbnail: "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=400&h=300&fit=crop",
-            category: "Fruits",
-            tags: ["Organic", "Seasonal"],
-            farmer: {
-                name: "Mohammad Ali",
-                farmName: "Green Valley Farms",
-                location: "Dhaka, Bangladesh",
-            },
-            price: 120,
-            currency: "BDT",
-            unit: "kg",
-            discount: { isDiscounted: false, discountPrice: null },
-            stock: { quantity: 50, unit: "kg", inStock: true },
-            rating: { average: 4.8, totalReviews: 156 },
-            isOrganic: true,
-            isCertified: true,
-            cartQuantity: 1
+
+    const { cart, updateQuantity, removeFromCart } = useCart();
+
+    const cartItems = cart.map(cartItem => {
+        const product = productsData.find(
+            p => p.id === cartItem.id
+        )
+
+        return {
+            ...product,
+            cartQuantity: cartItem.quantity
         }
-    ]);
+    })
 
     const [promoCode, setPromoCode] = useState('');
     const [appliedPromo, setAppliedPromo] = useState(null);
@@ -71,25 +38,6 @@ const Cart = () => {
     const tax = subtotal * 0.05;
     const discount = appliedPromo ? subtotal * 0.1 : 0;
     const total = subtotal + shippingFee + tax - discount;
-
-    // Update quantity
-    const updateQuantity = (id, newQuantity) => {
-        if (newQuantity < 1) {
-            removeItem(id);
-            return;
-        }
-
-        setCartItems(items =>
-            items.map(item =>
-                item.id === id ? { ...item, cartQuantity: newQuantity } : item
-            )
-        );
-    };
-
-    // Remove item
-    const removeItem = (id) => {
-        setCartItems(items => items.filter(item => item.id !== id));
-    };
 
     // Apply promo
     const handleApplyPromo = () => {
@@ -153,7 +101,7 @@ const Cart = () => {
                                     <CartItem
                                         key={item.id}
                                         item={item}
-                                        removeItem={removeItem}
+                                        removeItem={removeFromCart}
                                         updateQuantity={updateQuantity}
                                         calculateItemTotal={calculateItemTotal}
                                     />
