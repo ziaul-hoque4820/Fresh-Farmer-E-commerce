@@ -3,6 +3,7 @@ import { FaBars, FaTimes, FaShoppingCart, FaChevronDown, FaMoon, FaSun, FaUser, 
 import { Link, NavLink } from "react-router-dom";
 import Logo from "../../component/Logo";
 import useAuth from "../../hooks/useAuth";
+import { productCartItem } from "../../utils/cartUtils";
 
 function Navbar() {
     const { user, signOutUser } = useAuth();
@@ -59,6 +60,8 @@ function Navbar() {
         { path: "/about", label: "About" },
     ];
 
+    const cartItem = productCartItem();
+
     return (
         <nav className="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -102,7 +105,7 @@ function Navbar() {
                         >
                             <FaShoppingCart className="text-xl" />
                             <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                                3
+                                {cartItem.length}
                             </span>
                         </Link>
 

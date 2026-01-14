@@ -7,22 +7,13 @@ import TrustBadges from './TrustBadges';
 import CartItem from './CartItem';
 import OrderSummary from './OrderSummary';
 import { useCart } from '../../context/cartContext/CartProvider';
-import { productsData } from '../../data/products'
+import { productCartItem } from '../../utils/cartUtils';
 
 const Cart = () => {
 
-    const { cart, updateQuantity, removeFromCart } = useCart();
+    const { updateQuantity, removeFromCart } = useCart();
 
-    const cartItems = cart.map(cartItem => {
-        const product = productsData.find(
-            p => p.id === cartItem.id
-        )
-
-        return {
-            ...product,
-            cartQuantity: cartItem.quantity
-        }
-    })
+    const cartItems = productCartItem();
 
     const [promoCode, setPromoCode] = useState('');
     const [appliedPromo, setAppliedPromo] = useState(null);
