@@ -3,12 +3,19 @@ import { useState } from 'react';
 import { useCart } from '../../context/cartContext/CartProvider';
 
 function ProductDetailsCart({ product }) {
+    const [added, setAdded] = useState(false);
     const [quantity, setQuantity] = useState(1);
 
     const { addToCart } = useCart();
 
     const handleAddToCart = () => {
-        addToCart(product.id, quantity)
+        addToCart(product.id, quantity);
+
+        setAdded(true);
+
+        setTimeout(() => {
+            setAdded(false)
+        }, 1200);
     }
 
     const increaseQty = () => {
@@ -146,18 +153,30 @@ function ProductDetailsCart({ product }) {
                     {/* Action Buttons */}
                     <div className="space-y-3">
                         <button
-                            className="w-full bg-primary-600 hover:bg-primary-700 dark:bg-primary-700 dark:hover:bg-primary-800 text-white py-3 px-6 rounded-lg font-medium transition-all duration-200 shadow-md hover:shadow-lg">
+                            className="w-full bg-primary-600 hover:bg-primary-700 dark:bg-primary-700 dark:hover:bg-primary-800 text-white py-3 px-6 rounded-lg font-medium transition-all duration-200 shadow-md hover:shadow-lg cursor-pointer">
                             <i className="fas fa-bolt mr-2"></i>
                             Buy Now
                         </button>
                         <button
                             onClick={handleAddToCart}
-                            className="w-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white py-3 px-6 rounded-lg font-medium transition">
-                            <i className="fas fa-shopping-cart mr-2"></i>
-                            Add to Cart
+                            className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 cursor-pointer
+                                ${added
+                                    ? 'bg-[#55efc4] text-black scale-105'
+                                    : 'bg-primary-500 hover:bg-primary-600 text-white'
+                                }
+                            `}
+                        >
+                            {added ? (
+                                <span className="flex items-center justify-center gap-2 animate-pulse text-black">
+                                    <i className="fas fa-check"></i> Added
+                                </span>
+                            ) : (
+                                "Add to Cart"
+                            )}
                         </button>
+
                         <button
-                            className="w-full border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-900 dark:text-white py-3 px-6 rounded-lg font-medium transition">
+                            className="w-full border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-900 dark:text-white py-3 px-6 rounded-lg font-medium transition cursor-pointer">
                             <i className="far fa-heart mr-2"></i>
                             Add to Favorite
                         </button>

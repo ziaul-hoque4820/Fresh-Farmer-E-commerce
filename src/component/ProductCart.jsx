@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/cartContext/CartProvider';
+import { FaS } from 'react-icons/fa6';
 
 function ProductCart({ product }) {
+    const [added, setAdded] = useState(false);
     const navigate = useNavigate();
 
     const { addToCart } = useCart();
@@ -12,6 +14,12 @@ function ProductCart({ product }) {
     const handleAddToCart = (e) => {
         e.stopPropagation();
         addToCart(product.id, 1);
+
+        setAdded(true);
+
+        setTimeout(() => {
+            setAdded(false)
+        }, 1200);
     }
 
     return (
@@ -72,9 +80,21 @@ function ProductCart({ product }) {
                 </div>
                 <button
                     onClick={handleAddToCart}
-                    className="w-full bg-primary-600 hover:bg-primary-700 text-white py-2 rounded-lg font-medium transition cursor-pointer">
-                    Add to Cart
+                    className={`w-full py-2 rounded-lg font-medium transition-all duration-300 cursor-pointer
+                        ${added
+                            ? 'bg-[#55efc4] scale-105'
+                            : 'bg-primary-600 hover:bg-primary-700'
+                        } text-white`}
+                >
+                    {added ? (
+                        <span className="flex items-center justify-center gap-2 text-black animate-pulse">
+                            <i className="fas fa-check"></i> Added
+                        </span>
+                    ) : (
+                        "Add to Cart"
+                    )}
                 </button>
+
             </div>
         </div>
     )
