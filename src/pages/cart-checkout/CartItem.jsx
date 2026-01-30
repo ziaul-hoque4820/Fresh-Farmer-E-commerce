@@ -2,7 +2,7 @@ import { Award, Leaf, Minus, Plus, Star, Tag, Trash2 } from 'lucide-react'
 import React from 'react'
 
 function CartItem({ item, removeItem, updateQuantity, calculateItemTotal }) {
-    
+
     return (
         <div className="p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-150">
             <div className="flex flex-col sm:flex-row sm:items-center">
@@ -74,7 +74,7 @@ function CartItem({ item, removeItem, updateQuantity, calculateItemTotal }) {
                             <div className="flex items-center border border-gray-300 dark:border-gray-600 rounded-lg">
                                 <button
 
-                                    onClick={() => updateQuantity(item.id, item.cartQuantity - 1)}
+                                    onClick={() => updateQuantity(item.id, Math.max(1, item.cartQuantity - 1))}
                                     className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-l-lg transition duration-150 dark:text-white"
                                     aria-label="Decrease quantity"
                                 >
