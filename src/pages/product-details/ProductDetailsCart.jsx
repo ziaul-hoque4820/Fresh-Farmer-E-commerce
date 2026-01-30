@@ -5,6 +5,8 @@ import { useCart } from '../../context/cartContext/CartProvider';
 function ProductDetailsCart({ product }) {
     const [added, setAdded] = useState(false);
     const [quantity, setQuantity] = useState(1);
+    const [selectedImage, setSelectedImage] = useState(product?.thumbnail);
+    const [imageTransition, setImageTransition] = useState(false);
 
     const { addToCart } = useCart();
 
@@ -30,6 +32,16 @@ function ProductDetailsCart({ product }) {
         }
     };
 
+    const handleImageClick = (image) => {
+        if (image !== selectedImage) {
+            setImageTransition(true);
+            setTimeout(() => {
+                setSelectedImage(image);
+                setImageTransition(false);
+            }, 150);
+        }
+    };
+
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -38,8 +50,11 @@ function ProductDetailsCart({ product }) {
                 <div className="space-y-4">
                     <div className="aspect-square bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
                         <img id="mainImage"
-                            src={product?.thumbnail}
-                            alt={product?.name} className="w-full h-full object-cover" />
+                            src={selectedImage}
+                            alt={product?.name}
+                            className={`w-full h-full object-cover transition-all duration-300 ${imageTransition ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
+                                }`}
+                        />
                     </div>
 
                     {/* Thumbnail Images  */}
@@ -47,7 +62,11 @@ function ProductDetailsCart({ product }) {
                         {product.images.map((img, index) => (
                             <button
                                 key={index}
-                                className="aspect-square bg-white dark:bg-gray-800 rounded-lg overflow-hidden border-2 border-transparent hover:border-primary-500"
+                                onClick={() => handleImageClick(img)}
+                                className={`aspect-square bg-white dark:bg-gray-800 rounded-lg overflow-hidden border-2 transition-all duration-200 ${selectedImage === img
+                                        ? 'border-primary-500 ring-2 ring-primary-500 ring-offset-2'
+                                        : 'border-transparent hover:border-primary-500'
+                                    }`}
                             >
                                 <img
                                     src={img}
