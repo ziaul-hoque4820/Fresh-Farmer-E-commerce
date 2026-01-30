@@ -4,18 +4,23 @@ import { Link, NavLink } from "react-router-dom";
 import Logo from "../../component/Logo";
 import useAuth from "../../hooks/useAuth";
 import { productCartItem } from "../../utils/cartUtils";
+import { getInitialTheme, toggleTheme } from "../../utils/themeUtils";
 
 function Navbar() {
     const { user, signOutUser } = useAuth();
 
     const [menuOpen, setMenuOpen] = useState(false);
     const [userDropdownOpen, setUserDropdownOpen] = useState(false);
-    const [dark, setDark] = useState(
-        document.documentElement.classList.contains("dark")
-    );
+    const [dark, setDark] = useState(false);
 
     const mobileMenuRef = useRef(null);
     const userDropdownRef = useRef(null);
+
+    /* -------- Initialize Theme on Mount -------- */
+    useEffect(() => {
+        const initialTheme = getInitialTheme();
+        setDark(initialTheme === 'dark');
+    }, []);
 
     /* -------- Outside Click -------- */
     useEffect(() => {
@@ -40,10 +45,10 @@ function Navbar() {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
-    /* -------- Theme -------- */
-    const toggleDark = () => {
-        document.documentElement.classList.toggle("dark");
-        setDark((prev) => !prev);
+    /* -------- Theme Toggle -------- */
+    const handleToggleDark = () => {
+        const newTheme = toggleTheme();
+        setDark(newTheme === 'dark');
     };
 
     /* -------- Logout -------- */
@@ -111,7 +116,7 @@ function Navbar() {
 
                         {/* Theme Toggle (Before Login) */}
                         <button
-                            onClick={toggleDark}
+                            onClick={handleToggleDark}
                             className="p-2 text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400"
                         >
                             {dark ? <FaSun /> : <FaMoon />}

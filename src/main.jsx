@@ -5,6 +5,9 @@ import { RouterProvider } from 'react-router-dom'
 import router from './router/Router.jsx'
 import AuthProvider from './context/authContext/AuthProvider.jsx'
 import { CartProvider } from './context/cartContext/CartProvider.jsx'
+import { initializeTheme } from './utils/themeUtils.js'
+
+initializeTheme();
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
